@@ -12,12 +12,14 @@ function formatCep(e) {
 }
 
 function getCep() {
-  if (!isCepValid(cep)) {
+  if (!isCepValid(cepInput.value)) {
     addErrorMessage()
     return
   }
 
-  fetch(`https://viacep.com.br/ws/${cep}/json`, {
+  clearErrors()
+
+  fetch(`https://viacep.com.br/ws/${cepInput.value}/json`, {
     method: "GET",
     mode: "cors",
     headers: {
@@ -28,6 +30,7 @@ function getCep() {
     .then((data) => {
       resultContainer.innerHTML = "" // TODO: fazer loading
       resultContainer.innerHTML = "Carregando..."
+      resultContainer.innerHTML = ""
       resultContainer.appendChild(createResultCard(data))
     })
     .catch((error) => {
@@ -96,5 +99,5 @@ function addErrorMessage() {
 function clearErrors() {
   cepInput.classList.remove('input-error')
   const small = document.getElementsByTagName('small')
-  small.textContent = ''
+  small.textContent = '' // TODO: ver por que não retirou
 }
