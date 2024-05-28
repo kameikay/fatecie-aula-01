@@ -29,7 +29,7 @@ function getCep() {
     .then((response) => response.json())
     .then((data) => {
       resultContainer.innerHTML = "" // TODO: fazer loading
-      resultContainer.innerHTML = "Carregando..."
+      resultContainer.innerHTML = "Loading..."
       resultContainer.innerHTML = ""
       resultContainer.appendChild(createResultCard(data))
     })
